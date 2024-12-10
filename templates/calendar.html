@@ -1,61 +1,57 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="calendar-container">
-    <h1 class="calendar-title">My Calendar</h1>
-    <div class="calendar-header">
-        <div class="calendar-navigation">
-            <button onclick="window.location.href='?direction=prev&view={{ view }}'">&larr;</button>
-            <span class="current-month-year">{{ month_name }} {{ current_year }}</span>
-            <button onclick="window.location.href='?direction=next&view={{ view }}'">&rarr;</button>
-            <span id="loading-indicator" style="display:none;">Loading...</span>
+    <div class="calendar-container">
+        <h1 class="calendar-title">My Calendar</h1>
+        <div class="calendar-header">
+            <div class="calendar-navigation">
+                <button onclick="window.location.href='?direction=prev&view={{ view }}'">&larr;</button>
+                <span class="current-month-year">{{ month_name }} {{ current_year }}</span>
+                <button onclick="window.location.href='?direction=next&view={{ view }}'">&rarr;</button>
+                <span id="loading-indicator" style="display:none;">Loading...</span>
+            </div>
+            <div class="view-toggle">
+                <button onclick="window.location.href='?view=month'" class="view-button {{ 'active' if view == 'month' else '' }}">
+                    Month
+                </button>
+                <button onclick="window.location.href='?view=agenda'" class="view-button {{ 'active' if view == 'agenda' else '' }}">
+                    Agenda
+                </button>
+            </div>
         </div>
-        <div class="view-toggle">
-            <button
-                onclick="window.location.href='?view=month'"
-                class="view-button {{ 'active' if view == 'month' else '' }}">
-                Month
-            </button>
-            <button
-                onclick="window.location.href='?view=agenda'"
-                class="view-button {{ 'active' if view == 'agenda' else '' }}">
-                Agenda
-            </button>
-        </div>
-    </div>
 
-    <table class="calendar-table">
-        <thead>
-            <tr>
-                <th>SUN</th>
-                <th>MON</th>
-                <th>TUE</th>
-                <th>WED</th>
-                <th>THU</th>
-                <th>FRI</th>
-                <th>SAT</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                {% for day in days %}
-                {% if day.date is not none %}
-                <td>
-                    <div class="day-number">{{ day.date }}</div>
-                    {% for task in day.tasks %}
-                    <div class="task" title="{{ task.name }}">{{ task.name[:10] }}{% if task.name|length > 10 %}...{% endif %}</div>
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th>SUN</th>
+                    <th>MON</th>
+                    <th>TUE</th>
+                    <th>WED</th>
+                    <th>THU</th>
+                    <th>FRI</th>
+                    <th>SAT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for day in days %}
+                        {% if day.date is not none %}
+                            <td>
+                                <div class="day-number">{{ day.date }}</div>
+                                {% for task in day.tasks %}
+                                    <div class="task" title="{{ task.name }}">{{ task.name[:10] }}{% if task.name|length > 10 %}...{% endif %}</div>
+                                {% endfor %}
+                            </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        {% if loop.index % 7 == 0 %}
+                            </tr>
+                            <tr>
+                        {% endif %}
                     {% endfor %}
-                </td>
-                {% else %}
-                <td></td>
-                {% endif %}
-                {% if loop.index % 7 == 0 %}
-            </tr>
-            <tr>
-                {% endif %}
-                {% endfor %}
-            </tr>
-        </tbody>
-    </table>
-</div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

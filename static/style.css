@@ -167,7 +167,8 @@ body {
 }
 
 /* Register & Login Pages */
-.register-container, .login-container {
+.register-container,
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -175,7 +176,8 @@ body {
     background-color: #ffffff;
 }
 
-.register-box, .login-box {
+.register-box,
+.login-box {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     padding: 2rem;
@@ -185,17 +187,20 @@ body {
     text-align: center;
 }
 
-.register-box h1, .login-box h1 {
+.register-box h1,
+.login-box h1 {
     margin-bottom: 1rem;
     color: #000;
 }
 
-.register-box .form-group, .login-box .form-group {
+.register-box .form-group,
+.login-box .form-group {
     display: flex;
     gap: 0.5rem;
 }
 
-.register-box input, .login-box input {
+.register-box input,
+.login-box input {
     display: block;
     width: 100%;
     padding: 0.5rem;
@@ -204,7 +209,8 @@ body {
     border-radius: 5px;
 }
 
-.register-box .btn-register, .login-box .btn-login {
+.register-box .btn-register,
+.login-box .btn-login {
     width: 100%;
     padding: 0.5rem;
     background-color: #2e3d59;
