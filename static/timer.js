@@ -52,13 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
         [workMode, shortBreakMode, longBreakMode].forEach((button) => button.classList.remove("active-mode"));
         if (mode === "work") {
             workMode.classList.add("active-mode");
-            pomodoroTimer.style.backgroundColor = "#8B0000"; // Dark red
+            pomodoroTimer.style.backgroundColor = "#8B0000";
         } else if (mode === "short-break") {
             shortBreakMode.classList.add("active-mode");
-            pomodoroTimer.style.backgroundColor = "#5d9e9e"; // Greenish blue
+            pomodoroTimer.style.backgroundColor = "#5d9e9e";
         } else if (mode === "long-break") {
             longBreakMode.classList.add("active-mode");
-            pomodoroTimer.style.backgroundColor = "#466fb3"; // Dark blue
+            pomodoroTimer.style.backgroundColor = "#466fb3";
         }
     };
 

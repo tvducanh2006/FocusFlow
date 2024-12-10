@@ -1,5 +1,8 @@
 # FocusFlow – Your All-in-One Study Planner
 
+[`Link to my project on GitHub`](https://github.com/tvducanh2006/FocusFlow)
+[`Youtube Video Here`](https://youtu.be/IruZrABx_EM)
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Backend Design](#backend-design)

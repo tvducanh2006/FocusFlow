@@ -2,6 +2,9 @@
 
 FocusFlow is a web application designed to help students and professionals manage their tasks, schedules, and study sessions efficiently. Built with Flask, SQLite, and Bootstrap, FocusFlow integrates task management, calendar views, and a Pomodoro timer for optimal productivity.
 
+[`Link to my project on GitHub`](https://github.com/tvducanh2006/FocusFlow)
+[`Youtube Video Here`](https://youtu.be/IruZrABx_EM)
+
 ---
 
 ## Table of Contents
