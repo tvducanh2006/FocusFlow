@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<div class="tasks-container">
+    <!-- Task Input Form -->
+    <div class="form-container">
+        <h2>Add a Task</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="name">Task Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter task name" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="deadline_date">Deadline Date:</label>
+                    <input type="date" id="deadline_date" name="deadline_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="deadline_time">Deadline Time:</label>
+                    <input type="time" id="deadline_time" name="deadline_time" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="complexity">Complexity:</label>
+                    <select id="complexity" name="complexity">
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <select id="subject" name="subject">
+                        <option value="STEM">STEM</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Literature">Literature</option>
+                        <option value="Language">Language</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="estimated_time">Estimated Time (hours):</label>
+                    <input type="number" id="estimated_time" name="estimated_time" min="1" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Task</button>
+        </form>
+    </div>
+
+    <!-- Task List -->
+    <div class="task-list-container">
+        <h2>Task List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Task Name</th>
+                    <th>Subject</th>
+                    <th>Priority</th>
+                    <th>Complexity</th>
+                    <th>Deadline</th>
+                    <th>Est. Time (hrs)</th>
+                    <th>Remaining Time (hh:mm:ss)</th> <!-- Updated column name -->
+                    <th></th> <!-- Column for the red X button -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.subject }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>{{ task.complexity }}</td>
+                    <td>{{ task.deadline_date }} {{ task.deadline_time }}</td>
+                    <td>{{ task.estimated_time }}</td>
+                    <td>
+                        {% if task.remaining_time %}
+                        {{ task.remaining_time // 3600 }}:{{ (task.remaining_time % 3600) // 60 }}:{{ task.remaining_time % 60 }}
+                        {% else %}
+                        Not Set
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/delete_task/{{ task.id }}" class="delete-task">
+                            <span class="delete-icon">&times;</span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

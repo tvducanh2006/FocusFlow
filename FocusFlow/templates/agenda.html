@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="agenda-container">
+    <h1 class="calendar-title">My Calendar</h1>
+    <div class="calendar-header">
+        <div class="calendar-navigation">
+            <button onclick="window.location.href='?direction=prev&view={{ view }}'">&larr;</button>
+            <span class="current-month-year">{{ month_name }} {{ current_year }}</span>
+            <button onclick="window.location.href='?direction=next&view={{ view }}'">&rarr;</button>
+            <span id="loading-indicator" style="display:none;">Loading...</span>
+        </div>
+        <div class="view-toggle">
+            <button
+                onclick="window.location.href='?view=month'"
+                class="view-button {{ 'active' if view == 'month' else '' }}">
+                Month
+            </button>
+            <button
+                onclick="window.location.href='?view=agenda'"
+                class="view-button {{ 'active' if view == 'agenda' else '' }}">
+                Agenda
+            </button>
+        </div>
+    </div>
+
+    <div class="agenda-view">
+        <table class="agenda-table">
+            <thead>
+                <tr>
+                    <th>Deadline</th>
+                    <th>Estimated Time</th>
+                    <th>Task</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in agenda %}
+                <tr class="agenda-date-row">
+                    <td colspan="3" class="agenda-date-header">
+                        <h3>{{ day.date.strftime("%A, %B %d, %Y") }}</h3>
+                    </td>
+                </tr>
+                {% for task in day.tasks %}
+                <tr>
+                    <td class="agenda-time">{{ task.deadline_time }}</td>
+                    <td class="agenda-estimate">{{ task.estimated_time }} hours</td>
+                    <td class="agenda-name">{{ task.name }}</td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

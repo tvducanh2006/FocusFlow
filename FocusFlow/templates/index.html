@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}FocusFlow{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">FocusFlow</h1>
+    <p class="hero-subtitle">The best tool to organize and optimize your study tasks.</p>
+    <div class="hero-buttons">
+        {% if not session.get("user_id") %}
+        <a href="/register" class="btn btn-primary">Register</a>
+        <a href="/login" class="btn btn-secondary">Login</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

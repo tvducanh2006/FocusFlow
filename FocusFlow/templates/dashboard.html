@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+
+    <!-- Pomodoro Timer -->
+    <div class="pomodoro-timer">
+        <div class="timer-mode">
+            <button id="work-mode" class="mode-button active-mode">Pomodoro</button>
+            <button id="short-break-mode" class="mode-button">Short Break</button>
+            <button id="long-break-mode" class="mode-button">Long Break</button>
+        </div>
+        <div class="timer-display" id="timer-display">25:00</div>
+        <div class="selected-task">
+            <div id="selected-task-container">
+                <span id="selected-task-label">Selected Task:</span>
+                <span id="selected-task-name" class="task-name">None</span>
+            </div>
+        </div>
+        <div class="timer-controls">
+            <button id="start-button" class="control-button">START</button>
+            <span id="reset-icon" class="reset-icon">🔄</span>
+        </div>
+    </div>
+
+    <script src="/static/timer.js"></script>
+
+    <!-- Task Table -->
+    <div class="task-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Task Name</th>
+                    <th>Deadline Date</th>
+                    <th>Deadline Time</th>
+                    <th>Remaining Time (hh:mm:ss)</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.deadline_date }}</td>
+                    <td>{{ task.deadline_time }}</td>
+                    <td id="remaining-time-{{ task.id }}">
+                        {% if task.remaining_time > 0 %}
+                            {{ (task.remaining_time // 3600)|int }}:{{
+                                ((task.remaining_time % 3600) // 60)|int }}:{{
+                                (task.remaining_time % 60)|int }}
+                        {% else %}
+                            00:00:00
+                        {% endif %}
+                    </td>
+                    <td><button onclick="selectTask('{{ task.name }}', {{ task.id }}, {{ task.remaining_time }})">Select</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
