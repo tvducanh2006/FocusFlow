@@ -6,3 +6,4 @@ requests
 Werkzeug
 Jinja2
 SQLAlchemy
+git+https://github.com/jcrist/msgspec.git

@@ -102,7 +102,7 @@ To run FocusFlow, follow these steps:
 5. **Run the Application**:
    Start the Flask server by running:
    ```bash
-   flask run
+   python3 -m flask run
    ```
    **Note**: After running the server, Flask will provide a URL where your application is accessible. This URL may vary depending on your development environment.
 
